@@ -1,18 +1,18 @@
 <?php
 //全套程序 请 联系 QQ:3083578634 或者访问 www.uc697.com
 //移动端
-//Route::group(['domain' => 'm.motoo.com', 'namespace' => 'Wap'],function ($router)
+//Route::group(['domain' => 'm.bona668.com', 'namespace' => 'Wap'],function ($router)
 //{
 //    Route::get('/','IndexController@index')->name('wap.init');
 //});
 
 //二级域名指向
-Route::group(['domain' => 'admin.motoo.com'],function ($router)
+Route::group(['domain' => 'admin.bona668.com'],function ($router)
 {
     $router->get('/', 'Admin\AuthController@getLogin')->name('admin.init');
 });
 //二级域名指向
-Route::group(['domain' => 'agent.motoo.com'],function ($router)
+Route::group(['domain' => 'agent.bona668.com'],function ($router)
 {
     $router->get('/', 'Daili\AuthController@getLogin')->name('admin.init');
 });
@@ -198,7 +198,7 @@ Route::group(['prefix' => 'member','namespace' => 'Member'],function ($router)
 
 });
 
-Route::group(['domain' => 'agent.motoo.com', 'prefix' => 'daili','namespace' => 'Daili'],function ($router){
+Route::group(['domain' => 'agent.bona668.com', 'prefix' => 'daili','namespace' => 'Daili'],function ($router){
 
     Route::get('/login', ['as' => 'daili.login','uses' => 'AuthController@getLogin']);
     Route::post('/login', ['as' => 'daili.login.post','uses' => 'AuthController@postLogin']);
@@ -235,7 +235,7 @@ Route::group(['domain' => 'agent.motoo.com', 'prefix' => 'daili','namespace' => 
     });
 });
 
-Route::group(['domain' => 'admin.motoo.com', 'prefix' => 'admin','namespace' => 'Admin'],function ($router){
+Route::group(['domain' => 'admin.bona668.com', 'prefix' => 'admin','namespace' => 'Admin'],function ($router){
 
     Route::get('/login', ['as' => 'admin.login','uses' => 'AuthController@getLogin']);
     Route::post('/login', ['as' => 'admin.login.post','uses' => 'AuthController@postLogin']);
