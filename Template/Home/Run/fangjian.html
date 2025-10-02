@@ -1,0 +1,188 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/new/css/index.css"/>
+    <title>选择房间</title>
+     <!-- 引入样式 -->
+	<link rel="stylesheet" href="/images/css/common.css" />
+    <link rel="stylesheet" href="/images/css/room.css" />
+	
+	<!-- 公用js 自适应js-->
+	<script src="/images/js/sizeChange.js"></script>
+	<style>
+		body{
+			padding-bottom:.9rem;
+		}
+		.tabBox{
+			position:fixed;
+			width:100%;
+			height:.8rem;
+			display:flex;
+			justify-content:space-between;
+			align-items: center;
+			bottom:0;
+			left:0;
+			background:#ececec;
+		}
+		.tabBox li{
+			width:33.3%;
+			display:flex;
+			align-items: center;
+			height:100%;
+			border-right:1px solid #ddd;
+		}
+		.tabBox li:last-child{
+			border:0;
+		}
+		.tabBox li a{
+			display:block;
+			width:100%;
+			text-align: center;
+			color:#fcc155!important;
+		}
+	</style>
+</head>
+<body>
+	<!-- 导航栏 start-->
+     <div class="nav">
+        <h3>房间</h3>
+        <i class="iconfont icon-40" onclick="back()"></i>
+    </div>
+	<!-- 房间列表 start-->
+	<div class="container" >
+		<ul class="listCon flex">
+			<li class="room" type="primaryRoom" onclick="room(1)"> 
+				<img src="/images/a1.jpg" />
+				<div>
+					<span class="circle busy"></span>
+					<span class="txt">繁忙</span>
+				</div>
+			</li>
+			<li class="room" type="middleRoom"  onclick="room(2)">
+				<img src="/images/a2.jpg" />
+				<div>
+					<span class="circle busy"></span>
+					<span class="txt">繁忙</span>
+				</div>
+			</li>
+			<li class="room" type="seniorRoom"  onclick="room(3)">
+				<img src="/images/a3.jpg" />
+				<div>
+					<span class="circle fluency"></span>
+					<span class="txt">流畅</span>
+				</div>
+			</li>
+			<!--<li class="room" type="privateRoom">
+				<img src="/images/t4.png" />
+				<div>
+					<span class="circle fluency"></span>
+					<span class="txt">流畅</span>
+				</div>
+			</li> -->
+		</ul>
+	</div>
+	<input type="hidden" id="hall" value="1" />
+	
+
+	<!-- 温馨提示 start-->
+	<div class="tips">
+		<h3>温馨提示<i class="iconfont"></i></h3>
+		<p>余额不足</p>
+		<i class="iconfont icon-guanbi"></i>
+	</div>
+	
+	<!-- 房间暗号弹层 start-->
+	<div class="roomNum" id="roomNum">
+		<h3>输入授权码<i class="iconfont"></i></h3>
+		<input type="text" name="" placeholder="请输入授权码" />
+		<a href="javascript:void(0);">提交</a>
+		<i class="iconfont icon-guanbi"></i>
+	</div>
+	<div class="mask"></div>
+	
+	<script src="/images/js/jquery-1.11.2.min.js"></script>
+   
+	<script src="/images/js/layer.js"></script>
+	<script src="/images/js/room.js"></script>
+  	
+    <script>
+    	function room(r){
+			
+			if(r==1 && {$userinfo.points}<<?php echo $limit[0][0];?>){
+				alert("余额不足<?php echo $limit[0][0];?>!");
+				return false;
+			}else if(r==2 && {$userinfo.points}<<?php echo $limit[1][0];?>){
+				alert("余额不足<?php echo $limit[1][0];?>!");
+				return false;
+			}else if(r==3 && {$userinfo.points}<<?php echo $limit[2][0];?>){
+				alert("余额不足<?php echo $limit[2][0];?>!");
+				return false;
+			}
+			if(r==1){
+				window.location.href="{$url}/fangjian/a";
+			}else if(r==2){
+				window.location.href="{$url}/fangjian/b";
+			}else if(r==3){
+				window.location.href="{$url}/fangjian/c";
+			}
+          	
+				/*$.post('/index.php/Home/Index/checkMoney', {
+				'h' : 1,
+				'r' : r
+			}, function(rs) {
+				if(rs.result=="s"){
+					window.location.href="{$url}";
+				}else if(rs.error==1){
+					layer.msg("参数错误!");
+				}else if(rs.error==2){
+					layer.msg("余额不足!");
+				}
+			});*/
+		}
+      
+      
+      
+      $(".roomNum a").click(function(){
+        
+   
+		var val = $(this).prev().val();
+        var h = $("#hall").val();
+		$.ajax({
+            url:"/index.php/Home/Index/checkroom?roomId="+roomId+"&password=" +val ,
+            async:false,
+          	dataType :'json',
+            success: function(ajaxobj){
+                    //alert(data);
+                    $(".mask").fadeOut();
+						$(".roomNum").removeClass("active");
+
+                    if(ajaxobj.code == 200 )
+                    {
+                      
+                    	 room(4);
+                      
+                       // window.location.href = "/index.php/Home/Index/index/h/"+h+'/r/4';
+
+                    }else{
+                      
+                        layer.msg(ajaxobj.msg);
+                        return;
+                    }
+
+            },
+            error:function(data)
+            {
+                   tips("网络连接异常");
+            }
+        });
+	})
+    </script> 
+</body>
+</html>
+
+<!-- <include file="Template/Home/Run/foot.html"/> -->
+
+ 
