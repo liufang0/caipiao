@@ -1,0 +1,25 @@
+# Runtime cache and logs
+Runtime/Cache/
+Runtime/Logs/
+Runtime/Temp/
+Runtime/Data/
+
+# Uploads directory
+Uploads/
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Composer
+/vendor/
+composer.lock
+
+# Environment files
+.env
+.env.*
