@@ -549,7 +549,7 @@ class Template_Lite_Compiler extends Template_Lite {
 
 	function _dequote($string)
 	{
-		if (($string{0} == "'" || $string{0} == '"') && $string{strlen($string)-1} == $string{0})
+		if (($string[0] == "'" || $string[0] == '"') && $string[strlen($string)-1] == $string[0])
 		{
 			return substr($string, 1, -1);
 		}
@@ -671,17 +671,17 @@ class Template_Lite_Compiler extends Template_Lite {
 	function _parse_variable($variable)
 	{
 		// replace variable with value
-		if ($variable{0} == "\$")
+		if ($variable[0] == "\$")
 		{
 			// replace the variable
 			return $this->_compile_variable($variable);
 		}
-		elseif ($variable{0} == '#')
+		elseif ($variable[0] == '#')
 		{
 			// replace the config variable
 			return $this->_compile_config($variable);
 		}
-		elseif ($variable{0} == '"')
+		elseif ($variable[0] == '"')
 		{
 			// expand the quotes to pull any variables out of it
 			// fortunately variables inside of a quote aren't fancy, no modifiers, no quotes
@@ -708,12 +708,12 @@ class Template_Lite_Compiler extends Template_Lite {
 			$_result = str_replace("`", "", $_result);
 			return $_result;
 		}
-		elseif ($variable{0} == "'")
+		elseif ($variable[0] == "'")
 		{
 			// return the value just as it is
 			return $variable;
 		}
-		elseif ($variable{0} == "%")
+		elseif ($variable[0] == "%")
 		{
 			return $this->_parse_section_prop($variable);
 		}
@@ -825,18 +825,18 @@ class Template_Lite_Compiler extends Template_Lite {
 
 		foreach ($variable as $var)
 		{
-			if ($var{0} == '[')
+			if ($var[0] == '[')
 			{
 				$var = substr($var, 1, -1);
 				if (is_numeric($var))
 				{
 					$_result .= "[$var]";
 				}
-				elseif ($var{0} == '$')
+				elseif ($var[0] == '$')
 				{
 					$_result .= "[" . $this->_compile_variable($var) . "]";
 				}
-				elseif ($var{0} == '#')
+				elseif ($var[0] == '#')
 				{
 					$_result .= "[" . $this->_compile_config($var) . "]";
 				}
@@ -849,9 +849,9 @@ class Template_Lite_Compiler extends Template_Lite {
 					$_result .= "[\$this->_sections['$section']['$section_prop']]";
 				}
 			}
-			else if ($var{0} == '.')
+			else if ($var[0] == '.')
 			{
-   				if ($var{1} == '$')
+   				if ($var[1] == '$')
 				{
 	   				$_result .= "[\$this->_TPL['" . substr($var, 2) . "']]";
 				}

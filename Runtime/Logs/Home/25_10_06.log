@@ -60,3 +60,110 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000030s ]
 INFO: [ app_end ] --END-- [ RunTime:0.000059s ]
 
+[ 2025-10-06T06:37:59+08:00 ] 127.0.0.1 /index.php/Home/Run/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000040s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000027s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000045s ]
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+INFO: [ view_parse ] --START--
+NOTIC: [8192] Creation of dynamic property Think\Template::$tempVar is deprecated /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Template.class.php 第 415 行.
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000020s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000035s ]
+NOTIC: [2] Trying to access array offset on false /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/57fd128d7b8459481f4f07a16db7b655.php 第 33 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000993s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.001009s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000018s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000029s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000030s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000059s ]
+
+[ 2025-10-06T06:38:18+08:00 ] 127.0.0.1 /index.php/Home/Run/pk10
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000048s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000042s ]
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key "MCHID" /home/runner/work/caipiao/caipiao/Application/Common/Common/function.php 第 346 行.
+NOTIC: [2] Undefined array key "KEY" /home/runner/work/caipiao/caipiao/Application/Common/Common/function.php 第 347 行.
+NOTIC: [2] Undefined variable $timestamp /home/runner/work/caipiao/caipiao/Application/Home/Controller/RunController.class.php 第 389 行.
+NOTIC: [2] Undefined variable $noncestr /home/runner/work/caipiao/caipiao/Application/Home/Controller/RunController.class.php 第 389 行.
+NOTIC: [2] Undefined variable $appid /home/runner/work/caipiao/caipiao/Application/Home/Controller/RunController.class.php 第 389 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Application/Home/Controller/RunController.class.php 第 398 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Trying to access array offset on false /home/runner/work/caipiao/caipiao/Application/Home/Controller/RunController.class.php 第 403 行.
+NOTIC: [2] Trying to access array offset on false /home/runner/work/caipiao/caipiao/Application/Home/Controller/RunController.class.php 第 403 行.
+NOTIC: [8192] Automatic conversion of false to array is deprecated /home/runner/work/caipiao/caipiao/Application/Home/Controller/RunController.class.php 第 403 行.
+NOTIC: [2] foreach() argument must be of type array|object, false given /home/runner/work/caipiao/caipiao/Application/Home/Controller/RunController.class.php 第 406 行.
+NOTIC: [2] Undefined variable $kjlist /home/runner/work/caipiao/caipiao/Application/Home/Controller/RunController.class.php 第 428 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined array key 0 /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [2] Undefined variable $type /home/runner/work/caipiao/caipiao/Application/Home/Controller/RunController.class.php 第 441 行.
+INFO: [ view_parse ] --START--
+NOTIC: [8192] Creation of dynamic property Think\Template::$tempVar is deprecated /home/runner/work/caipiao/caipiao/ThinkPHP/Library/Think/Template.class.php 第 415 行.
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000116s ]
+NOTIC: [2] Undefined array key "nickname" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 34 行.
+NOTIC: [2] Undefined array key "points" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 35 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 40 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 40 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 41 行.
+NOTIC: [2] Undefined array key "nickname" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 572 行.
+NOTIC: [2] Undefined array key "id" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 574 行.
+NOTIC: [2] Undefined array key "id" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 676 行.
+NOTIC: [2] Undefined array key "headimgurl" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 695 行.
+NOTIC: [2] Undefined array key "nickname" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 696 行.
+NOTIC: [2] Undefined array key "id" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 722 行.
+NOTIC: [2] Undefined array key "id" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 737 行.
+NOTIC: [2] Undefined array key "id" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 744 行.
+NOTIC: [2] Trying to access array offset on false /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 803 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 803 行.
+NOTIC: [2] Trying to access array offset on false /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 804 行.
+NOTIC: [2] Trying to access array offset on null /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 804 行.
+NOTIC: [2] Undefined array key "id" /home/runner/work/caipiao/caipiao/Runtime/Cache/Home/a2c9381bccc9e9feade7f2bdf180a4bf.php 第 1065 行.
+ERR: Undefined constant "kefu"
+
