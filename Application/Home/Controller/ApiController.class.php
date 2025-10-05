@@ -33,8 +33,8 @@ class ApiController extends Controller
 			1 => 'http://api.cpkjapi.com/json?t=jisussc&limit=1&token=972D8A05AC5C388296820A56BE19DA17',
             2 => 'http://api.api68.com/pks/getPksHistoryList.do?lotCode=10057',
             3 => 'http://api.api861861.com/CQShiCai/getBaseCQShiCaiList.do?lotCode=10060', */
-            4 => '',
-            5 => ''
+            4 => C('bj28_api') ? C('bj28_api') : '',  // 从配置读取，如果没有则为空
+            5 => C('jnd28_api') ? C('jnd28_api') : ''  // 从配置读取，如果没有则为空
         );
         // http://e.apiplus.net/newly.do?token=t92f294b93daf64d3k&code=bjkl8&format=json
     }
@@ -111,7 +111,8 @@ class ApiController extends Controller
 				echo $v."============================== \n";
 				echo "now time:$now_time \n";
 				
-				if ((strtotime('now') >= $currentAward[next_time] || empty($currentAward)) && $v == 'bj28' || $v == 'jnd28' ) {
+				// 增加条件判断的括号避免逻辑错误
+				if ((strtotime('now') >= $currentAward[next_time] || empty($currentAward)) && ($v == 'bj28' || $v == 'jnd28')) {
 					
 					$code = $this->typearr[$k];
 					echo "start update $code \n";
@@ -181,10 +182,33 @@ class ApiController extends Controller
 						}
 						
 					}else{
-						$json_ori = http_get($this->apiarr[$k]);
-						$json = json_decode($json_ori, 1)['result']['data'][0];
+						// 对于其他游戏类型，尝试从外部API获取数据
+						// 检查API URL是否配置
+						if (empty($this->apiarr[$k])) {
+							echo "API URL未配置，跳过此次采集\n";
+							continue;
+						}
+						
+						$json_ori = http_get($this->apiarr[$k], 15);
+						if ($json_ori === false || empty($json_ori)) {
+							echo "API请求失败，跳过此次采集: {$this->apiarr[$k]}\n";
+							continue; // 跳过本次循环
+						}
+						
+						$json_data = json_decode($json_ori, true);
+						if (!$json_data || !isset($json_data['result']['data'][0])) {
+							echo "API返回数据格式错误，跳过此次采集\n";
+							continue;
+						}
+						$json = $json_data['result']['data'][0];
 					}
 					//print_r($json);
+					
+					// 检查$json是否有效
+					if (empty($json) || !isset($json['preDrawIssue'])) {
+						echo "获取的数据无效，跳过此次采集\n";
+						continue;
+					}
 					
 					//echo "<pre>";
 					//echo ($this->apiarr[$k]);
@@ -227,8 +251,24 @@ class ApiController extends Controller
 					$code = $this->typearr[$k];
 					echo "start update $code \n";
 					
-					$json_ori = http_get($this->apiarr[$k]);
-					$json = json_decode($json_ori, 1)['result']['data'][0];
+					// 检查API URL是否配置
+					if (empty($this->apiarr[$k])) {
+						echo "API URL未配置，跳过此次采集\n";
+						continue;
+					}
+					
+					$json_ori = http_get($this->apiarr[$k], 15);
+					if ($json_ori === false || empty($json_ori)) {
+						echo "API请求失败，跳过此次采集: {$this->apiarr[$k]}\n";
+						continue;
+					}
+					
+					$json_data = json_decode($json_ori, true);
+					if (!$json_data || !isset($json_data['result']['data'][0])) {
+						echo "API返回数据格式错误，跳过此次采集\n";
+						continue;
+					}
+					$json = $json_data['result']['data'][0];
 					
 					$arrs = ['01','02','03','04','05','06','07','08','09','10'];
 					shuffle($arrs);
@@ -274,8 +314,24 @@ class ApiController extends Controller
 					$code = $this->typearr[$k];
 					echo "start update $code \n";
 					
-					$json_ori = http_get($this->apiarr[$k]);
-					$json = json_decode($json_ori, 1)['data'][0];
+					// 检查API URL是否配置
+					if (empty($this->apiarr[$k])) {
+						echo "API URL未配置，跳过此次采集\n";
+						continue;
+					}
+					
+					$json_ori = http_get($this->apiarr[$k], 15);
+					if ($json_ori === false || empty($json_ori)) {
+						echo "API请求失败，跳过此次采集: {$this->apiarr[$k]}\n";
+						continue;
+					}
+					
+					$json_data = json_decode($json_ori, true);
+					if (!$json_data || !isset($json_data['data'][0])) {
+						echo "API返回数据格式错误，跳过此次采集\n";
+						continue;
+					}
+					$json = $json_data['data'][0];
 					
 					//var_dump($json);die;
 					

@@ -35,9 +35,17 @@ class CaiController extends Controller{
 	public function cpkpk(){
 		$url = "http://u7a.chengdashizheng.com/chatbet_v3/game/loginweb.php";
 		// var_dump($url);
-		$cpk = file_get_contents($url);
+		$cpk = http_get($url, 10);
+		if ($cpk === false || empty($cpk)) {
+			echo "API请求失败，无法获取数据";
+			return;
+		}
 		var_dump($cpk);exit;
 		$cr_data = json_decode($cpk);
+		if (!$cr_data) {
+			echo "JSON解析失败";
+			return;
+		}
 		foreach ($cr_data as $key => $value) {
 			$periodnumber = $key;
 			$awardtime = $value->dateline;
