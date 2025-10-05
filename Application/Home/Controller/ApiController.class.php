@@ -33,11 +33,96 @@ class ApiController extends Controller
 			1 => 'http://api.cpkjapi.com/json?t=jisussc&limit=1&token=972D8A05AC5C388296820A56BE19DA17',
             2 => 'http://api.api68.com/pks/getPksHistoryList.do?lotCode=10057',
             3 => 'http://api.api861861.com/CQShiCai/getBaseCQShiCaiList.do?lotCode=10060', */
-            4 => '',
-            5 => ''
+            4 => 'local',  // 使用本地API
+            5 => 'local'   // 使用本地API
         );
         // http://e.apiplus.net/newly.do?token=t92f294b93daf64d3k&code=bjkl8&format=json
     }
+	
+	/**
+	 * 获取API数据，支持失败重试和本地备用方案
+	 */
+	private function fetchApiData($url, $game, $retries = 3)
+	{
+		// 如果URL为'local'，使用本地数据生成
+		if ($url === 'local') {
+			return $this->getLocalGameData($game);
+		}
+		
+		$attempts = 0;
+		while ($attempts < $retries) {
+			try {
+				$data = http_get($url);
+				if ($data && !empty($data)) {
+					return json_decode($data, true);
+				}
+			} catch (Exception $e) {
+				// 记录错误日志
+				\Think\Log::write("API请求失败 [{$game}]: " . $e->getMessage(), 'ERROR');
+			}
+			$attempts++;
+			if ($attempts < $retries) {
+				sleep(1); // 等待1秒后重试
+			}
+		}
+		
+		// 所有重试都失败，使用本地备用数据
+		\Think\Log::write("API请求失败，使用本地备用数据 [{$game}]", 'WARN');
+		return $this->getLocalGameData($game);
+	}
+	
+	/**
+	 * 获取本地游戏数据
+	 */
+	private function getLocalGameData($game)
+	{
+		$time = time();
+		$game_time = M('time');
+		$caiji_admin = M('caiji_admin');
+		
+		if ($game == 'bj28') {
+			$current_period = $game_time->where("game='bj28' AND actionTime <= '" . date('H:i:s', $time) . "'")->order('actionNo DESC')->find();
+			if ($current_period) {
+				$periodnumber = date('ymd') . str_pad($current_period['actionno'], 3, "0", STR_PAD_LEFT);
+				$awardtime = date('Y-m-d ') . $current_period['actiontime'];
+				
+				$preset = $caiji_admin->where(array('periodnumber' => $periodnumber, 'game' => 'bj28'))->find();
+				$awardnumbers = $preset ? $preset['awardnumbers'] : (rand(0, 9) . ',' . rand(0, 9) . ',' . rand(0, 9));
+				
+				return array(
+					'result' => array(
+						'data' => array(
+							array(
+								'preDrawIssue' => $periodnumber,
+								'preDrawTime' => $awardtime,
+								'next_term' => $current_period['actionno'] + 1 > 288 ? date('ymd', $time + 86400) . '001' : date('ymd') . str_pad($current_period['actionno'] + 1, 3, "0", STR_PAD_LEFT)
+							)
+						)
+					)
+				);
+			}
+		} elseif ($game == 'jnd28') {
+			$current_period = $game_time->where("game='jnd28' AND actionTime <= '" . date('H:i:s', $time) . "'")->order('actionNo DESC')->find();
+			if ($current_period) {
+				$periodnumber = '1' . date('md') . str_pad($current_period['actionno'], 3, "0", STR_PAD_LEFT);
+				$awardtime = date('Y-m-d ') . $current_period['actiontime'];
+				
+				$preset = $caiji_admin->where(array('periodnumber' => $periodnumber, 'game' => 'jnd28'))->find();
+				$awardnumbers = $preset ? $preset['awardnumbers'] : (rand(0, 9) . ',' . rand(0, 9) . ',' . rand(0, 9));
+				
+				return array(
+					'data' => array(
+						array(
+							'issue' => $periodnumber,
+							'time' => $awardtime
+						)
+					)
+				);
+			}
+		}
+		
+		return null;
+	}
 
     public function testOpenInterval()
     {
@@ -181,8 +266,14 @@ class ApiController extends Controller
 						}
 						
 					}else{
-						$json_ori = http_get($this->apiarr[$k]);
-						$json = json_decode($json_ori, 1)['result']['data'][0];
+						// 使用新的API获取方法，支持失败重试和本地备用
+						$json_data = $this->fetchApiData($this->apiarr[$k], $v);
+						if ($json_data && isset($json_data['result']['data'][0])) {
+							$json = $json_data['result']['data'][0];
+						} else {
+							echo "API数据获取失败，跳过本期\n";
+							continue;
+						}
 					}
 					//print_r($json);
 					
@@ -274,8 +365,14 @@ class ApiController extends Controller
 					$code = $this->typearr[$k];
 					echo "start update $code \n";
 					
-					$json_ori = http_get($this->apiarr[$k]);
-					$json = json_decode($json_ori, 1)['data'][0];
+					// 使用新的API获取方法
+					$json_data = $this->fetchApiData($this->apiarr[$k], $v);
+					if ($json_data && isset($json_data['data'][0])) {
+						$json = $json_data['data'][0];
+					} else {
+						echo "API数据获取失败，跳过本期\n";
+						continue;
+					}
 					
 					//var_dump($json);die;
 					

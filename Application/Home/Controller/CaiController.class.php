@@ -8,57 +8,83 @@ class CaiController extends Controller{
 
 	public function sc2(){
 		$url = "http://www.bwlc.net/bulletin/trax.html";
-		$cpk = http_get($url);
-		preg_match_all('/<td>(.*?)<\/td>/',$cpk, $out); 
-		if (isset($out[1]) && $out[1]) {
-			$periodnumber = strval($out[1][0]);
-			$awardnumbers = strval($out[1][1]);
-			$awardtime = strval($out[1][2]) . ":30";
-		}
-		if ($periodnumber && $awardnumbers && $awardtime) {
-			$data = array(
-				'periodnumber' => $periodnumber,
-				'awardnumbers' => $awardnumbers,
-				'awardtime' => $awardtime,
-				'game' => 'pk10',
-				'addtime' => time()
-			);
-
-			$caijinum = M('caiji')->where("game = 'pk10'")->limit(0,1)->order("id desc")->find();
-			if (strval($caijinum['periodnumber']) != $periodnumber && $periodnumber > $caijinum['periodnumber']) {
-				M('caiji')->add($data);
+		try {
+			$cpk = http_get($url);
+			if (!$cpk) {
+				\Think\Log::write("API请求失败 [sc2]: 无法获取数据", 'ERROR');
+				echo "API请求失败，无法获取数据\n";
+				return;
 			}
+			preg_match_all('/<td>(.*?)<\/td>/',$cpk, $out); 
+			if (isset($out[1]) && $out[1]) {
+				$periodnumber = strval($out[1][0]);
+				$awardnumbers = strval($out[1][1]);
+				$awardtime = strval($out[1][2]) . ":30";
+			}
+			if ($periodnumber && $awardnumbers && $awardtime) {
+				$data = array(
+					'periodnumber' => $periodnumber,
+					'awardnumbers' => $awardnumbers,
+					'awardtime' => $awardtime,
+					'game' => 'pk10',
+					'addtime' => time()
+				);
+
+				$caijinum = M('caiji')->where("game = 'pk10'")->limit(0,1)->order("id desc")->find();
+				if (strval($caijinum['periodnumber']) != $periodnumber && $periodnumber > $caijinum['periodnumber']) {
+					M('caiji')->add($data);
+					echo "数据采集成功: 期号 {$periodnumber}\n";
+				}
+			}
+		} catch (Exception $e) {
+			\Think\Log::write("API请求异常 [sc2]: " . $e->getMessage(), 'ERROR');
+			echo "API请求异常: " . $e->getMessage() . "\n";
 		}
 	}
 
 
 	public function cpkpk(){
 		$url = "http://u7a.chengdashizheng.com/chatbet_v3/game/loginweb.php";
-		// var_dump($url);
-		$cpk = file_get_contents($url);
-		var_dump($cpk);exit;
-		$cr_data = json_decode($cpk);
-		foreach ($cr_data as $key => $value) {
-			$periodnumber = $key;
-			$awardtime = $value->dateline;
-			$awardnumbers = $value->number;
-			break;
-		}
-
-		if ($periodnumber && $awardnumbers && $awardtime) {
-			$data = array(
-				'periodnumber' => $periodnumber,
-				'awardnumbers' => $awardnumbers,
-				'awardtime' => $awardtime,
-				'game' => 'pk10',
-				'addtime' => time()
-			);
-
-			$caijinum = M('caiji')->where("game = 'pk10'")->limit(0,1)->order("id desc")->find();
-			if (strval($caijinum['periodnumber']) != $periodnumber  && $periodnumber > $caijinum['periodnumber']) {
-				M('caiji')->add($data);
+		try {
+			$cpk = @file_get_contents($url);
+			if (!$cpk) {
+				\Think\Log::write("API请求失败 [cpkpk]: 无法连接到服务器", 'ERROR');
+				echo "API请求失败，无法连接到服务器\n";
+				return;
 			}
-		}		
+			// var_dump($cpk);exit; // 调试用，已注释
+			$cr_data = json_decode($cpk);
+			if (!$cr_data) {
+				\Think\Log::write("API数据解析失败 [cpkpk]: JSON格式错误", 'ERROR');
+				echo "API数据解析失败\n";
+				return;
+			}
+			foreach ($cr_data as $key => $value) {
+				$periodnumber = $key;
+				$awardtime = $value->dateline;
+				$awardnumbers = $value->number;
+				break;
+			}
+
+			if ($periodnumber && $awardnumbers && $awardtime) {
+				$data = array(
+					'periodnumber' => $periodnumber,
+					'awardnumbers' => $awardnumbers,
+					'awardtime' => $awardtime,
+					'game' => 'pk10',
+					'addtime' => time()
+				);
+
+				$caijinum = M('caiji')->where("game = 'pk10'")->limit(0,1)->order("id desc")->find();
+				if (strval($caijinum['periodnumber']) != $periodnumber  && $periodnumber > $caijinum['periodnumber']) {
+					M('caiji')->add($data);
+					echo "数据采集成功: 期号 {$periodnumber}\n";
+				}
+			}
+		} catch (Exception $e) {
+			\Think\Log::write("API请求异常 [cpkpk]: " . $e->getMessage(), 'ERROR');
+			echo "API请求异常: " . $e->getMessage() . "\n";
+		}
 	}
 	
 	public function ft1(){
