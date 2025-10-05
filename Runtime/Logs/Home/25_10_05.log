@@ -1,0 +1,60 @@
+[ 2025-10-05T22:22:40+00:00 ] ::1 /
+NOTIC: [8] date_default_timezone_set(): Timezone ID 'PRC' is invalid /workspaces/caipiao/ThinkPHP/Library/Think/Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000018s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000382s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000375s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000387s ]
+
+[ 2025-10-05T22:22:46+00:00 ] ::1 /index.php
+NOTIC: [8] date_default_timezone_set(): Timezone ID 'PRC' is invalid /workspaces/caipiao/ThinkPHP/Library/Think/Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000020s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000019s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000025s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000020s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000028s ]
+
+[ 2025-10-05T22:24:27+00:00 ] ::1 /
+NOTIC: [8] date_default_timezone_set(): Timezone ID 'PRC' is invalid /workspaces/caipiao/ThinkPHP/Library/Think/Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000026s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000049s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000024s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000036s ]
+
+[ 2025-10-05T22:24:38+00:00 ] ::1 /
+NOTIC: [8] date_default_timezone_set(): Timezone ID 'PRC' is invalid /workspaces/caipiao/ThinkPHP/Library/Think/Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000029s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000035s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000022s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000033s ]
+
+[ 2025-10-05T22:24:44+00:00 ] ::1 /
+NOTIC: [8] date_default_timezone_set(): Timezone ID 'PRC' is invalid /workspaces/caipiao/ThinkPHP/Library/Think/Think.class.php 第 106 行.
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000022s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000020s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000031s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000019s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000028s ]
+
