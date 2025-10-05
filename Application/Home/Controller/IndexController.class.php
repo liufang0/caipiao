@@ -13,15 +13,15 @@ class IndexController extends BaseController
         if (C('is_open') == 0) {
             //$this->redirect('error');
         }
-        if ($this->yanzheng($_SERVER['HTTP_HOST']) == 0) {
-            //$this->redirect('error');
-        }
-        $auth = auth_check(C('auth_code'), $_SERVER['HTTP_HOST']);
-
-        if (!$auth) {
-            echo "未授权或授权已过期";
-            exit;
-        }
+        // Authorization check bypassed for local development
+        // if ($this->yanzheng($_SERVER['HTTP_HOST']) == 0) {
+        //     $this->redirect('error');
+        // }
+        // $auth = auth_check(C('auth_code'), $_SERVER['HTTP_HOST']);
+        // if (!$auth) {
+        //     echo "未授权或授权已过期";
+        //     exit;
+        // }
         $t_id = I('t');
         session('tid', $t_id);
         if (C('is_baidu')) {

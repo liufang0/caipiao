@@ -380,7 +380,8 @@ function I($name, $default = '', $filter = null, $datas = null)
             $input = & $_SERVER;
             break;
         case 'globals':
-            $input = & $GLOBALS;
+            // PHP 8.1+ compatibility fix: Cannot pass $GLOBALS by reference
+            $input = $GLOBALS;
             break;
         case 'data':
             $input = & $datas;
