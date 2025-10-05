@@ -58,6 +58,9 @@ return array (
   'pk10_api' => 'http://39.104.56.250/caiji/?name=bjpks',
   'xyft_api' => 'http://39.104.56.250/caiji/?name=xyft',
   'ssc_api' => 'http://39.104.56.250/caiji/?name=cqssc',
+  'use_local_api' => '1',  // 1=使用本地API 0=使用外部API（当外部API不可用时自动启用）
+  'bj28_kj_select' => '1',  // 1=启用北京28采集 0=关闭
+  'jnd28_kj_select' => '1', // 1=启用加拿大28采集 0=关闭
   'pk10_xz_open' => 
   array (
     'dxds' => '1',
