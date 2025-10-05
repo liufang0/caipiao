@@ -164,12 +164,12 @@ function curlGet($url){
 	return $output;
 }
 
-    function http_get($url) {
+    function http_get($url, $timeout = 10) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, trim($url));
         curl_setopt($ch, CURLOPT_REFERER, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // 获取的信息以文件流的形式返回
-        // curl_setopt($ch,CURLOPT_USERAGENT, $user_agent);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36');
 
 //        curl_setopt($ch, CURLOPT_HEADER, $return_header); // 显示返回的Header区域内容
 	    if (strpos($url, 'https') !== false) {
@@ -177,11 +177,30 @@ function curlGet($url){
 	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 	    }
-        curl_setopt($ch, CURLOPT_TIMEOUT, 5); // 设置超时限制防止死循环
+        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout); // 设置超时限制防止死循环
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5); // 连接超时
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // 跟随重定向
+        curl_setopt($ch, CURLOPT_MAXREDIRS, 3); // 最多3次重定向
+        
         $result = curl_exec($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        
         if (curl_errno($ch)) {
-            $result = curl_error($ch);  // 捕抓异常
+            $error = curl_error($ch);
+            curl_close($ch);
+            // 记录错误日志
+            error_log("API请求失败 URL: $url, 错误: $error");
+            return false;  // 返回false而不是错误信息
         }
+        
+        curl_close($ch);
+        
+        // 检查HTTP状态码
+        if ($http_code != 200) {
+            error_log("API请求失败 URL: $url, HTTP状态码: $http_code");
+            return false;
+        }
+        
         return $result;
     }
 /**
